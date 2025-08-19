@@ -127,3 +127,9 @@ module "ec2_instances" {
     environment = "development"
   }
 }
+
+module "s3_bucket" {
+  source  = "app.terraform.io/SaintClair33/s3-bucket-mr/aws"
+  version = "1.0.0"
+  bucket_name = "my-bucket"
+}
