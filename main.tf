@@ -129,7 +129,7 @@ module "ec2_instances" {
 }
 
 module "s3_bucket" {
-  source  = "app.terraform.io/SaintClair33/s3-bucket-mr/aws"
+  source  = "app.terraform.io/policy-as-code-training/s3-bucket-mr/aws"
   version = "1.0.0"
   bucket_name = "my-bucket"
 }
