@@ -114,7 +114,7 @@ module "elb_http" {
   }
 }
 
-# Use remote module from HCP Terraform
+# Use remote module from HCP Terraform TF
 module "ec2_instances" {
   source  = "app.terraform.io/policy-as-code-training/ec2-instance-tests-mr/aws"
   version = "1.0.0"
