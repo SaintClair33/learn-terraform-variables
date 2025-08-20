@@ -114,8 +114,10 @@ module "elb_http" {
   }
 }
 
+# Use remote module from HCP Terraform
 module "ec2_instances" {
-  source = "./modules/aws-instance"
+  source  = "app.terraform.io/policy-as-code-training/ec2-instance-tests-mr/aws"
+  version = "1.0.0"
 
   instance_count     = var.instance_count
   instance_type      = var.instance_type
@@ -123,13 +125,27 @@ module "ec2_instances" {
   security_group_ids = [module.app_security_group.this_security_group_id]
 
   tags = {
-    project     = "project-alpha",
-    environment = "development"
+    project     = "project-alpha"
+    environment = "dev"
   }
 }
 
-module "s3_bucket" {
-  source  = "app.terraform.io/policy-as-code-training/s3-bucket-mr/aws"
-  version = "1.0.0"
-  bucket_name = "my-bucket"
-}
+# module "ec2_instances" {
+#   source = "./modules/aws-instance"
+
+#   instance_count     = var.instance_count
+#   instance_type      = var.instance_type
+#   subnet_ids         = module.vpc.private_subnets[*]
+#   security_group_ids = [module.app_security_group.this_security_group_id]
+
+#   tags = {
+#     project     = "project-alpha",
+#     environment = "development"
+#   }
+# }
+
+# module "s3_bucket" {
+#   source  = "app.terraform.io/policy-as-code-training/s3-bucket-mr/aws"
+#   version = "1.0.0"
+#   bucket_name = "my-bucket"
+# }
